@@ -21,7 +21,7 @@ const Body = () => {
     );
 
     const res = await data.json();
-
+    console.log(res);
     // Optional Chaining
     setlistOfRestaurants(
       res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -44,9 +44,10 @@ const Body = () => {
           className="rounded-xl"
           onClick={() => {
             const filteredRestaurants = listofRestaurants.filter((res) => {
-              res.info.name.includes(searchText);
+              return res.info.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase());
             });
-
             setlistOfRestaurants(filteredRestaurants);
           }}
         >
@@ -54,7 +55,7 @@ const Body = () => {
         </Button>
 
         <Button
-          className="rounded-xl iPhone4and4S:ml-6 iPhone6+and7+and8+:ml-12 iPad1and2andMiniandAir:ml-9 FullHDand2K:ml-56 font-semibold p-[10px] ml-5"
+          className="rounded-xl iPhone4and4S:ml-6 iPhone6+and7+and8+:ml-12 iPad1and2andMiniandAir:ml-9 FullHDand2K:ml-56 p-[10px] ml-5"
           onClick={() => {
             const filterRestaurants = listofRestaurants.filter(
               (res) => res.info.avgRating > 4.3

@@ -15,12 +15,12 @@ const RestaurantCard = (props) => {
         className="w-[100%] h-44 rounded-xl object-cover"
       />
       <h3 className="text-[1.17em] font-bold mt-3">{name}</h3>
-      <h4 className="text-[1em] font-[600] mt-3">{cuisines.join(", ")}</h4>
-      <h4 className="text-[1em] font-[600] mt-3 flex gap-[0.1rem]">
+      <h4 className="text-[1em] font-[500] mt-3">{cuisines.join(", ")}</h4>
+      <h4 className="text-[1em] font-[500] mt-3 flex gap-[0.1rem]">
         <Logo />
         {`${avgRating} • ${deliveryTime} mins`}
       </h4>
-      <h4 className="text-[1em] font-[600] mt-3">{costForTwo}</h4>
+      <h4 className="text-[1em] font-[500] mt-3">{costForTwo}</h4>
     </div>
   );
 };
