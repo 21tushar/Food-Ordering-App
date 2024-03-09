@@ -16,7 +16,7 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul className="flex font-semibold mr-5 *:m-[10px] *:p-[10px]">
-          <a href="#">Home</a>
+          <a href="/">Home</a>
           <a href="#">About Us</a>
           <a href="#">Contact Us</a>
           <a href="#">Cart</a>

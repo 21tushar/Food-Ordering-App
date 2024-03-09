@@ -5,6 +5,8 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listofRestaurants, setlistOfRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  
   const [searchText, setSearchText] = useState("");
 
   function getSearchText(e) {
@@ -21,9 +23,12 @@ const Body = () => {
     );
 
     const res = await data.json();
-    console.log(res);
+
     // Optional Chaining
     setlistOfRestaurants(
+      res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurants(
       res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   }
@@ -34,8 +39,8 @@ const Body = () => {
     <div>
       <div className="flex gap-1 mt-4">
         <input
-          type="text"
-          className="bg-[#f4f4f4] rounded-xl ml-[2.78rem] pl-2"
+          type="search"
+          className="bg-[#f4f4f4] rounded-xl ml-[2.78rem] pl-2 border-none"
           onChange={getSearchText}
           value={searchText}
         />
@@ -48,7 +53,7 @@ const Body = () => {
                 .toLowerCase()
                 .includes(searchText.toLowerCase());
             });
-            setlistOfRestaurants(filteredRestaurants);
+            setFilteredRestaurants(filteredRestaurants)
           }}
         >
           Search
@@ -67,7 +72,7 @@ const Body = () => {
         </Button>
       </div>
       <div className="res-container mt-6 gap-2 grid grid-cols-4 iPhone4and4S:grid iPhone4and4S:grid-cols-1 iPhone4and4S:ml-5 iPad1and2andMiniandAir:grid iPad1and2andMiniandAir:grid-cols-2 GalaxyTab2:grid GalaxyTab2:grid-cols-3  GalaxyTab2:ml-10 iPhone6+and7+and8+:ml-12 iPad1and2andMiniandAir:ml-[2.3rem] iPadPro10.5:mr-[4.5rem] FullHDand2K:ml-56">
-        {listofRestaurants.map((restaurant) => (
+        {filteredRestaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
