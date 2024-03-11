@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { Button } from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [listofRestaurants, setlistOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  
+
   const [searchText, setSearchText] = useState("");
 
   function getSearchText(e) {
@@ -19,10 +19,11 @@ const Body = () => {
 
   async function fetchData() {
     const data = await fetch(
-      "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.95250&lng=75.71050&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
     const res = await data.json();
+    console.log(res)
 
     // Optional Chaining
     setlistOfRestaurants(
@@ -37,30 +38,42 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div>
-      <div className="flex gap-1 mt-4">
-        <input
-          type="search"
-          className="bg-[#f4f4f4] rounded-xl ml-[2.78rem] pl-2 border-none"
-          onChange={getSearchText}
-          value={searchText}
-        />
+      <div className="gap-1 mt-6">
+        <div className="flex justify-center items-center">
+          <Input
+            isClearable
+            onClear={() => setSearchText("")}
+            type="text"
+            className="ml-[2.78rem] pl-2 w-[30rem]"
+            onChange={getSearchText}
+            value={searchText}
+            placeholder="Search a restaurant you want"
+            size="sm"
+            radius="none"
+            classNames={{
+              input: ["text-black/90", "placeholder:text-zinc-500 text-large"],
+              inputWrapper: ["bg-transparent", "border-small"],
+            }}
+          />
+
+          <Button
+            className="h-12 w-24 -ml-2 bg-[#c26100] hover:bg-[#016034] text-white font-medium"
+            radius="none"
+            onClick={() => {
+              const filteredRestaurants = listofRestaurants.filter((res) => {
+                return res.info.name
+                  .toLowerCase()
+                  .includes(searchText.toLowerCase());
+              });
+              setFilteredRestaurants(filteredRestaurants);
+            }}
+          >
+            Search
+          </Button>
+        </div>
 
         <Button
-          className="rounded-xl"
-          onClick={() => {
-            const filteredRestaurants = listofRestaurants.filter((res) => {
-              return res.info.name
-                .toLowerCase()
-                .includes(searchText.toLowerCase());
-            });
-            setFilteredRestaurants(filteredRestaurants)
-          }}
-        >
-          Search
-        </Button>
-
-        <Button
-          className="rounded-xl iPhone4and4S:ml-6 iPhone6+and7+and8+:ml-12 iPad1and2andMiniandAir:ml-9 FullHDand2K:ml-56 p-[10px] ml-5"
+          className="rounded-xl iPhone4and4S:ml-6 iPhone6+and7+and8+:ml-12 iPad1and2andMiniandAir:ml-9 FullHDand2K:ml-56 p-[10px] ml-5 hidden"
           onClick={() => {
             const filterRestaurants = listofRestaurants.filter(
               (res) => res.info.avgRating > 4.3
@@ -71,7 +84,7 @@ const Body = () => {
           Top Rated Restaurants
         </Button>
       </div>
-      <div className="res-container mt-6 gap-2 grid grid-cols-4 iPhone4and4S:grid iPhone4and4S:grid-cols-1 iPhone4and4S:ml-5 iPad1and2andMiniandAir:grid iPad1and2andMiniandAir:grid-cols-2 GalaxyTab2:grid GalaxyTab2:grid-cols-3  GalaxyTab2:ml-10 iPhone6+and7+and8+:ml-12 iPad1and2andMiniandAir:ml-[2.3rem] iPadPro10.5:mr-[4.5rem] FullHDand2K:ml-56">
+      <div className="res-container mt-10 gap-6 grid grid-cols-4 iPhone4and4S:grid iPhone4and4S:grid-cols-1 iPhone4and4S:ml-5 iPad1and2andMiniandAir:grid iPad1and2andMiniandAir:grid-cols-2 GalaxyTab2:grid GalaxyTab2:grid-cols-3  GalaxyTab2:ml-10 iPhone6+and7+and8+:ml-12 iPad1and2andMiniandAir:ml-[2.3rem] iPadPro10.5:mr-[4.5rem] FullHDand2K:ml-56">
         {filteredRestaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
