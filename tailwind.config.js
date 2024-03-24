@@ -38,6 +38,9 @@ export default {
 
         'GalaxyTab2': {'min': '800px', 'max': '1280px'},
       },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [nextui()],
