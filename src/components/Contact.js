@@ -14,19 +14,21 @@ const Contact = () => {
   return (
     <>
       <Header />
-      <div className="grid grid-cols-2 mt-24 iPhone4and4S:grid iPhone4and4S:grid-cols-1 iPhone4and4S:mt-11">
-        <div className="ml-32">
+      <div className="grid grid-cols-2 mt-24 iPhone4and4S:grid iPhone4and4S:grid-cols-1 iPhone4and4S:mt-11 iPad1and2andMiniandAir:grid iPad1and2andMiniandAir:grid-cols-2">
+        <div className="ml-32 iPad1and2andMiniandAir:w-[400px]">
           <img
             src="https://foodfire-chapter09.netlify.app/Contact-Us.13c5d28a.png"
             alt=""
             width={350}
-            className="iPhone4and4S:-ml-16"
+            className="iPhone4and4S:-ml-16 iPad1and2andMiniandAir:-ml-24 iPadPro10.5:-ml-8"
           />
         </div>
         <div className="-ml-40 iPhone4and4S:justify-center iPhone4and4S:items-center iPhone4and4S:text-center iPhone4and4S:ml-4 iPhone4and4S:mt-7 iPhone4and4S:*:mr-5">
-        <h1 className="text-[2.3em] iPhone4and4S:text-[3em] font-bold font-poppins text-center mt-3">Contact us</h1>
+          <h1 className="text-[2.3em] iPhone4and4S:text-[3em] font-bold font-poppins text-center mt-3 iPad1and2andMiniandAir:ml-40">
+            Contact us
+          </h1>
           <form
-            className="flex-col items-center justify-center flex iPhone4and4S:*:w-60"
+            className="flex-col items-center justify-center flex iPhone4and4S:*:w-60 iPhone4and4S:-ml-2 iPad1and2andMiniandAir:*:w-64 iPad1and2andMiniandAir:*:ml-44"
             onSubmit={handleSubmit}
           >
             <Input
@@ -77,7 +79,7 @@ const Contact = () => {
               }}
             />
             <Button
-              className="mt-5 bg-[#c26100] text-white font-poppins text-lg"
+              className="mt-5 bg-[#c26100] text-white font-poppins text-lg iPhone4and4S:ml-3"
               radius="sm"
               type="submit"
             >

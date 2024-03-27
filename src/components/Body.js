@@ -19,7 +19,7 @@ const Body = () => {
 
   async function fetchData() {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=26.9124336&lng=75.7872709&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=27.1766701&lng=78.00807449999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
     const res = await data.json();
@@ -37,7 +37,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div>
-      <div className="gap-1 mt-6">
+      <div className="gap-1 mt-8">
         <div className="flex justify-center items-center">
           <Input
             isClearable
