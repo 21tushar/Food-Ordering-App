@@ -18,11 +18,8 @@ const Header = () => {
       <div className="nav-items">
         <ul className="flex font-semibold mr-5 *:m-[10px] *:p-[10px]">
           <Link to="/">Home</Link>
-          {/* <a href="/">Home</a> */}
           <Link to="/about">About Us</Link>
-          {/* <a href="#">About Us</a> */}
           <Link to="/contact">Contact Us</Link>
-          {/* <a href="#">Contact Us</a> */}
           <a href="#">Cart</a>
           <Button onClick={changeBtn}>{btnName}</Button>
         </ul>
