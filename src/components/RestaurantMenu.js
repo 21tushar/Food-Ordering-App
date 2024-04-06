@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 import Header from "./Header";
 import Shimmer from "./Shimmer";
 import Logo from "./Logo";
@@ -56,32 +57,78 @@ const RestaurantMenu = () => {
         </div>
       </div>
 
-      <div>
-        <div className="text-center mt-3">
-          <h3 className="text-[20px] font-poppins font-[800]">Recommended</h3>
-          <hr className="w-[60rem] m-auto h-[0.8px] bg-[#e2e2e7]" />
-        </div>
-        <div className="flex list-none justify-center items-center text-[#02060cbf] font-[600] gap-2">
+      <Accordion
+      motionProps={{
+        variants: {
+          enter: {
+            y: 0,
+            opacity: 1,
+            height: "auto",
+            transition: {
+              height: {
+                type: "spring",
+                stiffness: 500,
+                damping: 30,
+                duration: 1,
+              },
+              opacity: {
+                easings: "ease",
+                duration: 1,
+              },
+            },
+          },
+          exit: {
+            y: -10,
+            opacity: 0,
+            height: 0,
+            transition: {
+              height: {
+                easings: "easeInOut",
+                duration: 0.5,
+              },
+              opacity: {
+                easings: "easeInOut",
+                duration: 0.5,
+              },
+            },
+          },
+        },
+      }}
+    >
+        <AccordionItem
+          key="1"
+          aria-label="Accordion 1"
+          title="Recommended"
+          subtitle="Click to expand"
+          className="font-[800] w-[40rem] m-auto"
+        >
           <div>
-            {itemCards.map((item) => {
-              return <li key={item.card.info.id}>{item.card.info.name}</li>;
-            })}
+            <div className="text-center mt-3">
+              <hr className="w-[40rem] m-auto h-[0.8px] bg-[#e2e2e7]" />
+            </div>
+            <div className="flex list-none justify-center items-center text-[#02060cbf] font-[600] gap-4">
+              <div>
+                {itemCards?.map((item) => {
+                  return <li key={item.card.info.id}>{item.card.info.name}</li>;
+                })}
+              </div>
+              <div>
+                {itemCards?.map((item) => {
+                  return (
+                    <li key={item.card.info.id}>{`₹${item.card.info.price / 100
+                      }`}</li>
+                  );
+                })}
+              </div>
+            </div>
           </div>
-          <div>
-            {itemCards.map((item) => {
-              return (
-                <li key={item.card.info.id}>{`₹${item.card.info.price / 100
-                  }`}</li>
-              );
-            })}
-          </div>
-          {/* <div>
+        </AccordionItem>
+      </Accordion>
+      {/* <div>
             {itemCards.map((item) => {
               return <img src={`${CDN_URL}/${item.card.info.imageId}`} width={100} height={144} />
             })}
           </div> */}
-        </div>
-      </div>
     </>
   );
 };
