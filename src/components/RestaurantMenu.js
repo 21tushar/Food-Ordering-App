@@ -103,10 +103,10 @@ const RestaurantMenu = () => {
           className="font-[800] w-[40rem] m-auto"
         >
           <div>
-            <div className="text-center mt-3">
+            <div className="text-center">
               <hr className="w-[40rem] m-auto h-[0.8px] bg-[#e2e2e7]" />
             </div>
-            <div className="flex list-none justify-center items-center text-[#02060cbf] font-[600] gap-4">
+            <div className="flex list-none justify-center items-center text-[#02060cbf] font-[600] gap-4 mt-2">
               <div>
                 {itemCards?.map((item) => {
                   return <li key={item.card.info.id}>{item.card.info.name}</li>;

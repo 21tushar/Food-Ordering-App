@@ -1,5 +1,7 @@
 import React from "react";
 import Header from "./Header";
+import User from "./User";
+import UserClass from "./UserClass";
 
 const About = () => {
   return (
@@ -22,6 +24,8 @@ const About = () => {
           className="ml-24"
         />
       </div>
+      <User />
+      <UserClass />
     </>
   );
 };
