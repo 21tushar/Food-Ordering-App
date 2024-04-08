@@ -24,8 +24,8 @@ const About = () => {
           className="ml-24"
         />
       </div>
-      <User />
-      <UserClass />
+      <User name={"Prasant Sarswat (Functional)"} />
+      <UserClass name={"Prasant Sarswat (Class)"}/>
     </>
   );
 };
