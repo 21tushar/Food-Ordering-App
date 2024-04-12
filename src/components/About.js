@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header";
-import User from "./User";
 import UserClass from "./UserClass";
 
 const About = () => {
@@ -24,8 +23,7 @@ const About = () => {
           className="ml-24"
         />
       </div>
-      <User name={"Prasant Sarswat (Functional)"} />
-      <UserClass name={"Prasant Sarswat (Class)"}/>
+      <UserClass name={"Prasant Sarswat (Class)"} />
     </>
   );
 };

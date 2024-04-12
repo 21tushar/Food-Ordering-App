@@ -22,35 +22,3 @@
   initial-value: 0deg;
   inherits: false;
 }
-
-@property --angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-.moving-border {
-  position: relative;
-  background: #111;
-  padding: 4px;
-  color: white;
-}
-.moving-border::before,
-.moving-border::after {
-  content: "";
-  position: absolute;
-  inset: -0.2rem;
-  z-index: -1;
-  background: linear-gradient(var(--angle), #032146, #c3f2ff, #b00);
-  animation: rotate 5s linear infinite;
-}
-.moving-border::after {
-  filter: blur(10px);
-}
-@keyframes rotate {
-  0% {
-    --angle: 0deg;
-  }
-  100% {
-    --angle: 360deg;
-  }
-}
