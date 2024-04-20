@@ -3,6 +3,7 @@ import { Button, Input } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listofRestaurants, setlistOfRestaurants] = useState([]);
@@ -30,6 +31,16 @@ const Body = () => {
     );
     setFilteredRestaurants(
       res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  }
+
+  const onlineStatus = useOnlineStatus();
+
+  if (onlineStatus === false) {
+    return (
+      <h1 className="text-[2.3em] font-bold mt-48 text-center">
+        Looks like you are offline, Please connect to the internet
+      </h1>
     );
   }
 

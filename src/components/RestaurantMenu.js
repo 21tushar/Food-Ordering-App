@@ -1,26 +1,15 @@
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Accordion, AccordionItem } from "@nextui-org/react";
+import { CDN_URL } from "../utils/constants";
 import Header from "./Header";
 import Shimmer from "./Shimmer";
 import Logo from "./Logo";
-import { CDN_URL } from "../utils/constants";
-import { MENU_API } from "../utils/constants";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-
   const { restaurantId } = useParams();
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
-
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + restaurantId);
-    const res = await data.json();
-    setResInfo(res?.data);
-  };
+  const resInfo = useRestaurantMenu(restaurantId);
 
   if (resInfo === null) {
     return <Shimmer />;
@@ -58,43 +47,43 @@ const RestaurantMenu = () => {
       </div>
 
       <Accordion
-      motionProps={{
-        variants: {
-          enter: {
-            y: 0,
-            opacity: 1,
-            height: "auto",
-            transition: {
-              height: {
-                type: "spring",
-                stiffness: 500,
-                damping: 30,
-                duration: 1,
+        motionProps={{
+          variants: {
+            enter: {
+              y: 0,
+              opacity: 1,
+              height: "auto",
+              transition: {
+                height: {
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 30,
+                  duration: 1,
+                },
+                opacity: {
+                  easings: "ease",
+                  duration: 1,
+                },
               },
-              opacity: {
-                easings: "ease",
-                duration: 1,
+            },
+            exit: {
+              y: -10,
+              opacity: 0,
+              height: 0,
+              transition: {
+                height: {
+                  easings: "easeInOut",
+                  duration: 0.5,
+                },
+                opacity: {
+                  easings: "easeInOut",
+                  duration: 0.5,
+                },
               },
             },
           },
-          exit: {
-            y: -10,
-            opacity: 0,
-            height: 0,
-            transition: {
-              height: {
-                easings: "easeInOut",
-                duration: 0.5,
-              },
-              opacity: {
-                easings: "easeInOut",
-                duration: 0.5,
-              },
-            },
-          },
-        },
-      }}
-    >
+        }}
+      >
         <AccordionItem
           key="1"
           aria-label="Accordion 1"
@@ -115,8 +104,9 @@ const RestaurantMenu = () => {
               <div>
                 {itemCards?.map((item) => {
                   return (
-                    <li key={item.card.info.id}>{`₹${item.card.info.price / 100
-                      }`}</li>
+                    <li key={item.card.info.id}>{`₹${
+                      item.card.info.price / 100
+                    }`}</li>
                   );
                 })}
               </div>

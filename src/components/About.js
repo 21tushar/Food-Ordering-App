@@ -23,7 +23,7 @@ const About = () => {
           className="ml-24"
         />
       </div>
-      <UserClass name={"Prasant Sarswat (Class)"} />
+      <UserClass name={"Prasant Sarswat"} />
     </>
   );
 };
