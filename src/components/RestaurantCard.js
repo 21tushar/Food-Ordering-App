@@ -1,4 +1,4 @@
-import Logo from "./Logo"
+import Logo from "./Logo";
 import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (props) => {
@@ -23,6 +23,17 @@ const RestaurantCard = (props) => {
       {/* <h4 className="text-[1em] font-[500] mt-3">{costForTwo}</h4> */}
     </div>
   );
+};
+
+export const withPromotedLabel = (RestaurantCard) => {
+  return () => {
+    return (
+      <div>
+        <label>Promoted</label>
+        <RestaurantCard />
+      </div>
+    );
+  };
 };
 
 export default RestaurantCard;
