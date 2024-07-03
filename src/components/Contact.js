@@ -17,7 +17,7 @@ const Contact = () => {
       <div className="grid grid-cols-2 mt-24 iPhone4and4S:grid iPhone4and4S:grid-cols-1 iPhone4and4S:mt-11 iPad1and2andMiniandAir:grid iPad1and2andMiniandAir:grid-cols-2">
         <div className="ml-32 iPad1and2andMiniandAir:w-[400px]">
           <img
-            src="https://foodfire-chapter09.netlify.app/Contact-Us.13c5d28a.png"
+            src="https://foodfire-chapter09.netlify.app/contactUs.13c5d28a.png"
             alt=""
             width={350}
             className="iPhone4and4S:-ml-16 iPad1and2andMiniandAir:-ml-24 iPadPro10.5:-ml-8"

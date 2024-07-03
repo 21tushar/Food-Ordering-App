@@ -18,7 +18,7 @@ const About = () => {
           </p>
         </div>
         <img
-          src="https://foodfire-chapter09.netlify.app/burger-image.ec55d069.png"
+          src="https://foodfire-chapter09.netlify.app/burgerImage.430940fb.png"
           alt=""
           className="ml-24"
         />
